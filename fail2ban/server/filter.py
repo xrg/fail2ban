@@ -994,9 +994,9 @@ class DNSUtils:
 		v = DNSUtils.CACHE_dnsToIp.get(dns)
 		if v is not None: 
 			return v
-		# retrieve ip
+		# retrieve ip (todo: use AF_INET6 for IPv6)
 		try:
-			v = set(socket.gethostbyname_ex(dns)[2])
+			v = set([i[4][0] for i in socket.getaddrinfo(dns, None, socket.AF_INET, 0, socket.IPPROTO_TCP)])
 		except socket.error, e:
 			# todo: make configurable the expired time of cache entry:
 			logSys.warning("Unable to find a corresponding IP address for %s: %s", dns, e)
