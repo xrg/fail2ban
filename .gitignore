@@ -6,3 +6,7 @@ htmlcov
 .coverage
 *.orig
 *.rej
+*.bak
+__pycache__
+.vagrant/
+.idea/
