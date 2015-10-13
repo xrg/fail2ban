@@ -1,16 +1,17 @@
+%define git_repo fail2ban
+%define git_head HEAD
+
 # spec file based on and patches graciously taken from tpg@mandriva
 Summary:	Ban IP-addresses that result in too many password failures
 Name:		fail2ban
-Version:	0.8.13
-Release:	%mkrel 2
+Version:	%git_get_ver
+Release:	%mkrel %git_get_rel2
 License:	GPLv2+
 Group:		System/Networking
 URL:		http://www.fail2ban.org/
-Source0:	https://codeload.github.com/%{name}/%{name}/tar.gz/%{version}
-Source2:	%{name}.service
-Source3:	%{name}.tmpfiles.conf
-Patch0:		%{name}-0.8.13-jail-conf.patch
-Patch3:		%{name}-0.8.13-log-actions-to-SYSLOG.patch
+Source:		%git_bs_source %{name}-%{version}.tar.gz
+Source1:	%{name}-gitrpm.version
+Source2:	%{name}-changelog.gitrpm.txt
 BuildRequires:	python-devel
 BuildRequires:	systemd-units
 Requires:	python		>= 2.5
@@ -34,9 +35,8 @@ the user. Fail2Ban can read multiple log files including sshd and Apache web
 server logs.
 
 %prep
+%git_get_source
 %setup -q
-%patch0 -p0
-%patch3 -p0
 
 %build
 %serverbuild
