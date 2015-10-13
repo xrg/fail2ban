@@ -66,19 +66,14 @@ install -D -p -m 0644 contrib/mageia/fail2ban.tmpfiles.conf %{buildroot}%{_tmpfi
 %{_unitdir}/%{name}.service
 %{_tmpfilesdir}/%{name}.conf 
 %{_bindir}/%{name}-*
-%config(noreplace) %{_sysconfdir}/%{name}/*.conf
-%config(noreplace) %{_sysconfdir}/%{name}/action.d/*.conf
-%config(noreplace) %{_sysconfdir}/%{name}/filter.d/*.conf
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/action.d
 %dir %{_sysconfdir}/%{name}/filter.d
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/client
-%dir %{_datadir}/%{name}/server
-%dir %{_datadir}/%{name}/common
-%{_datadir}/%{name}/client/*.py*
-%{_datadir}/%{name}/server/*.py*
-%{_datadir}/%{name}/common/*.py*
-%{_datadir}/%{name}/testcases/*.py*
-%{_datadir}/%{name}/*-info
+%config(noreplace) %{_sysconfdir}/%{name}/*.conf
+%config(noreplace) %{_sysconfdir}/%{name}/action.d/*.conf
+%config(noreplace) %{_sysconfdir}/%{name}/filter.d/*.conf
+%config(noreplace) %{_sysconfdir}/%{name}/filter.d/ignorecommands/apache-fakegooglebot
+%config(noreplace) %{_sysconfdir}/%{name}/action.d/*.py*
+%{py_sitedir}/fail2ban
+%{py_sitedir}/fail2ban-*.egg-info
 %{_mandir}/man1/*
