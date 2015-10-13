@@ -1,14 +1,14 @@
 [Unit]
-Description=Fail2Ban Service
+Description=fail2ban attack scanner
 Documentation=man:fail2ban(1)
-After=network.target iptables.service firewalld.service
+After=syslog.target network.target iptables.service firewalld.service
 
 [Service]
 Type=forking
 ExecStart=/usr/bin/fail2ban-client -x start
 ExecStop=/usr/bin/fail2ban-client stop
 ExecReload=/usr/bin/fail2ban-client reload
-PIDFile=/var/run/fail2ban/fail2ban.pid
+; PIDFile=/var/run/fail2ban/fail2ban.pid
 Restart=always
 
 [Install]

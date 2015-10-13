@@ -51,8 +51,8 @@ python setup.py install --root=%{buildroot}
 
 install -d %{buildroot}/%{_mandir}/man1
 install man/*.1 %{buildroot}%{_mandir}/man1/
-install -D -p -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/%{name}.service
-install -D -p -m 0644 %{SOURCE3} %{buildroot}%{_tmpfilesdir}/%{name}.conf
+install -D -p -m 0644 files/fail2ban.service %{buildroot}%{_unitdir}/%{name}.service
+install -D -p -m 0644 contrib/mageia/fail2ban.tmpfiles.conf %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
 %post
 %_tmpfilescreate %{name}
